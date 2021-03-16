@@ -1,10 +1,10 @@
 name: 'Linear App'
 description: 'Create a comment in a linear ticket'
 inputs:
-  ref_head:  # ref head of pull request
-    description: 'ref head of pull request'
-    required: false
-    default: 'none'
+  message:  # ref head of pull request
+    description: 'message to create'
+    required: true
+    default: 'Hello'
 outputs:
   time: # id of output
     description: 'The time we created comment'

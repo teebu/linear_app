@@ -4,7 +4,8 @@ const linear = require("@linear/sdk");
 const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_KEY });
 
 
-let ref_head = process.env.CI_HEAD_REF_SLUG //"doc-490-evaluate-pull-request-deployment-of"
+let ref_head = process.env.GITHUB_REF //"refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
+//let body = core.getInput('message');
 let body = 'Hello I am a robot 🤖 [G](https://google.com)'
 
 try {
