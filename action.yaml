@@ -1,0 +1,13 @@
+name: 'Linear App'
+description: 'Create a comment in a linear ticket'
+inputs:
+  ref_head:  # ref head of pull request
+    description: 'ref head of pull request'
+    required: false
+    default: 'none'
+outputs:
+  time: # id of output
+    description: 'The time we created comment'
+runs:
+  using: 'node12'
+  main: 'app.js'

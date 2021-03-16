@@ -1,12 +1,19 @@
+const core = require('@actions/core');
+const github = require('@actions/github');
 const linear = require("@linear/sdk");
 const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_KEY });
 
 
 let ref_head = process.env.CI_HEAD_REF_SLUG //"doc-490-evaluate-pull-request-deployment-of"
 let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const issueId = parse_ref(ref_head)
-createComment(issueId, body)
 
+try {
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  const issueId = parse_ref(ref_head)
+  createComment(issueId, body)
+} catch(err) {
+  core.setFailed(error.message);
+}
 
 // todo: parse title, body, ref_slug of git pull request and get the 'doc-id'
 function parse_ref(ref_head) {
@@ -28,6 +35,10 @@ async function createComment(issueId, body) {
   const commentPayload = await linearClient.commentCreate({issueId, body});
   if (commentPayload.success) {
     console.log(await commentPayload.comment)
+
+    const time = (new Date()).toTimeString();
+    core.setOutput("time", time);
+
     return commentPayload.comment;
   } else {
     return new Error("Failed to create comment");
