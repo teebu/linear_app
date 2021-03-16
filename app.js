@@ -19,6 +19,8 @@ try {
 // todo: parse title, body, ref_slug of git pull request and get the 'doc-id'
 function parse_ref(ref_head) {
   // the pull request CI_HEAD_REF_SLUG "doc-490-evaluate-pull-request-deployment-of"
+  console.log('ref_head:', ref_head)
+
   if (!ref_head) return null;
 
   const re = /(doc-\d+)/i
