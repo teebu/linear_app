@@ -5,8 +5,8 @@ const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_
 
 
 let ref_head = process.env.GITHUB_HEAD_REF // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
-//let body = core.getInput('message');
-let body = 'Hello I am a robot 🤖 [G](https://google.com)'
+let body = core.getInput('message');
+// let body = 'Hello I am a robot 🤖 [G](https://google.com)'
 
 try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
