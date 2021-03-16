@@ -4,7 +4,7 @@ const linear = require("@linear/sdk");
 const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_KEY });
 
 
-let ref_head = process.env.GITHUB_REF //"refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
+let ref_head = process.env.GITHUB_REF // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 //let body = core.getInput('message');
 let body = 'Hello I am a robot 🤖 [G](https://google.com)'
 
@@ -16,9 +16,9 @@ try {
   core.setFailed(error.message);
 }
 
-// todo: parse title, body, ref_slug of git pull request and get the 'doc-id'
+// todo: parse title, body, ref of git pull request and get the 'doc-id'
 function parse_ref(ref_head) {
-  // the pull request CI_HEAD_REF_SLUG "doc-490-evaluate-pull-request-deployment-of"
+  // the pull request GITHUB_REF "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
   console.log('ref_head:', ref_head)
 
   if (!ref_head) return null;
