@@ -18,12 +18,12 @@ try {
 
 // todo: parse title, body, ref of git pull request and get the 'doc-id'
 function parse_ref(ref_head) {
-  // the pull request GITHUB_REF "doc-490-evaluate-pull-request-deployment-of"
+  // the pull request GITHUB_REF "doc-490-evaluate-pull-request-deployment-of", "fe-4390-message"
   console.log('ref_head:', ref_head)
 
   if (!ref_head) return null;
 
-  const re = /\b(doc-\d+)\b/i
+  const re = /\b([a-z]{2,3}-\d+)\b/i
   console.log(ref_head.match(re))
   return ref_head.match(re) && ref_head.match(re)[0]
 }
