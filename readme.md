@@ -26,3 +26,6 @@ with:
 env:
   LINEAR_API_KEY: KEYHERE
 ```
+
+## Tags:
+git tag -a v1.8 -m "update version"
