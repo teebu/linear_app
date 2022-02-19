@@ -6,43 +6,14 @@ const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_
 let statesCache = {};
 let stateIds = {};
 
-let ref_head = process.env.GITHUB_HEAD_REF // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
+let ref_head = process.env.GITHUB_HEAD_REF; // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const body = core.getInput('message');
-const topic = core.getInput('topic');
-const team = core.getInput('team');
-const label = core.getInput('label');
-const state = core.getInput('state');
+const body = '> cypress-test (861551c5) of docuvision/Redacted.ai@refs/heads/master by Adam Skoczylas<skocadam@gmail.com> failure in 7 min 11 sec'; // core.getInput('message');
+const title = '🥵 QA - cypress.redacted.ai FAILED @ Feb 12, 2022 4:12pm'; // core.getInput('topic');
+const team = 'Front-end Team'; // core.getInput('team');
+const label = 'Cypress Fails'; // core.getInput('label');
+const state = 'Draft'; // core.getInput('state');
 
-async function main() {
-  if (!topic && body) {
-    // create a comment in a related ticket found by PR branch
-    try {
-      const payload = JSON.stringify(github.context.payload, undefined, 2)
-      const issueId = parse_ref(ref_head)
-      createComment(issueId, body)
-    }
-    catch (err) {
-      core.setFailed(err.message);
-    }
-  } else if (topic && body && team) {
-    // create a new topic with description in specified team
-    try {
-      const labelIds = [getLabelId(label)];
-      const teamId = getTeamId(team);
-
-      const options = {
-        title,
-        description: body,
-        teamId
-      }
-
-      await createIssue(null, options)
-    } catch (err) {
-      core.setFailed(err.message);
-    }
-  }
-}
 async function main() {
   if (!title && body) {
     console.log('creating comment');

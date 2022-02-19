@@ -5,6 +5,22 @@ inputs:
     description: 'message to create'
     required: true
     default: 'I am a robot'
+  topic:
+    description: 'topic title'
+    required: false
+    default: ''
+  team:
+    description: 'team'
+    required: false
+    default: ''
+  label:
+    description: 'label'
+    required: false
+    default: ''
+  status:
+    description: 'ticket status'
+    required: false
+    default: 'Draft'
 outputs:
   time: # time of output
     description: 'The time we created comment'
