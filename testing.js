@@ -1,6 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const linear = require("@linear/sdk");
+const utils = require('./utils');
+
 const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_KEY });
 
 let statesCache = {};
@@ -8,8 +10,8 @@ let stateIds = {};
 
 let ref_head = process.env.GITHUB_HEAD_REF; // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const body = '> cypress-test (861551c5) of docuvision/Redacted.ai@refs/heads/master by Adam Skoczylas<skocadam@gmail.com> failure in 7 min 11 sec'; // core.getInput('message');
-const title = '🥵 QA - cypress.redacted.ai FAILED @ Feb 12, 2022 4:12pm'; // core.getInput('topic');
+const title = utils.replacePlaceholders('🥵 QA - cypress.redacted.ai FAILED @ {DATE}'); // core.getInput('topic');
+const body = utils.replacePlaceholders('> Cypress test failed: link'); // core.getInput('message');
 const team = 'Front-end Team'; // core.getInput('team');
 const label = 'Cypress Fails'; // core.getInput('label');
 const state = 'Draft'; // core.getInput('state');

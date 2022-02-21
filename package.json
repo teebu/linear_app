@@ -1,6 +1,6 @@
 {
   "name": "linear_app",
-  "version": "1.0.1",
+  "version": "1.0.9",
   "description": "Creates a comment to a related linear ticket",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "@linear/sdk": "^1.8.4"
+    "@linear/sdk": "^1.8.4",
+    "moment": "^2.29.1"
   }
 }

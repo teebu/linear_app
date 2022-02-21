@@ -1,6 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const linear = require("@linear/sdk");
+const utils = require('./utils');
+
 const linearClient = new linear.LinearClient({ 'apiKey': process.env.LINEAR_API_KEY });
 
 let statesCache = {};
@@ -8,41 +10,12 @@ let stateIds = {};
 
 let ref_head = process.env.GITHUB_HEAD_REF // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const body = core.getInput('message');
-const topic = core.getInput('topic');
+const topic = utils.replacePlaceholders(core.getInput('topic'));
+const body = utils.replacePlaceholders(core.getInput('message'));
 const team = core.getInput('team');
 const label = core.getInput('label');
 const state = core.getInput('state');
 
-async function main() {
-  if (!topic && body) {
-    // create a comment in a related ticket found by PR branch
-    try {
-      const payload = JSON.stringify(github.context.payload, undefined, 2)
-      const issueId = parse_ref(ref_head)
-      createComment(issueId, body)
-    }
-    catch (err) {
-      core.setFailed(err.message);
-    }
-  } else if (topic && body && team) {
-    // create a new topic with description in specified team
-    try {
-      const labelIds = [getLabelId(label)];
-      const teamId = getTeamId(team);
-
-      const options = {
-        title,
-        description: body,
-        teamId
-      }
-
-      await createIssue(null, options)
-    } catch (err) {
-      core.setFailed(err.message);
-    }
-  }
-}
 async function main() {
   if (!title && body) {
     console.log('creating comment');
