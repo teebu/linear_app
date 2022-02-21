@@ -19,7 +19,7 @@ The time the ticket was created.
 ```
 - name: Create Linear Comment
 id: linear_app
-uses: teebu/linear_app@v1.6
+uses: teebu/linear_app@v1.10
 with:
   message: |
     Great success!
@@ -28,5 +28,5 @@ env:
 ```
 
 ## Tags:
-git tag -a v1.10.0 -m "update version"
+git tag -a v1.10.0 -m "update version"  
 git push origin v1.10.0
