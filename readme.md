@@ -28,4 +28,5 @@ env:
 ```
 
 ## Tags:
-git tag -a v1.8 -m "update version"
+git tag -a v1.9.0 -m "update version"
+git push origin v1.9.0
