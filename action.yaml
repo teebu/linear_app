@@ -17,8 +17,8 @@ inputs:
     description: 'label'
     required: false
     default: ''
-  status:
-    description: 'ticket status'
+  state:
+    description: 'ticket state'
     required: false
     default: 'Draft'
 outputs:

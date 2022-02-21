@@ -24,7 +24,7 @@ If title is provided, a new ticket will be created with body.
 
 ## Inputs
 
-### `status`
+### `state`
 
 
 ## Outputs
