@@ -8,6 +8,25 @@ This action pots a comment in a related linear ticket
 
 **Required** The message you want to be displayed in the comment. Default `"I am a robot"`.
 
+## Inputs
+
+### `title`
+
+If title is provided, a new ticket will be created with body.
+
+## Inputs
+
+### `team`
+
+## Inputs
+
+### `label`
+
+## Inputs
+
+### `status`
+
+
 ## Outputs
 
 ### `time`

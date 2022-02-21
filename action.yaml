@@ -5,7 +5,7 @@ inputs:
     description: 'message to create'
     required: true
     default: 'I am a robot'
-  topic:
+  title:
     description: 'topic title'
     required: false
     default: ''

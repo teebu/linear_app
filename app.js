@@ -10,7 +10,7 @@ let stateIds = {};
 
 let ref_head = process.env.GITHUB_HEAD_REF // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const topic = utils.replacePlaceholders(core.getInput('topic'));
+const title = utils.replacePlaceholders(core.getInput('title'));
 const body = utils.replacePlaceholders(core.getInput('message'));
 const team = core.getInput('team');
 const label = core.getInput('label');
