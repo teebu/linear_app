@@ -15,6 +15,7 @@ const body = utils.replacePlaceholders(core.getInput('message'));
 const team = core.getInput('team');
 const label = core.getInput('label');
 const state = core.getInput('state');
+const subscribers = utils.splitAndTrim(core.getInput('subscribers'));
 
 async function main() {
   if (!title && body) {
