@@ -19,6 +19,14 @@ function replacePlaceholders(text) {
   return text;
 }
 
-module.exports = {
-  replacePlaceholders
+function splitAndTrim(str='', sep=',') {
+  str = str || '';
+  let arr = [];
+  return arr = str.split(sep).map(item => item.trim());
 }
+
+
+module.exports = {
+  replacePlaceholders,
+  splitAndTrim
+};

@@ -35,6 +35,7 @@ async function main() {
       const teamId = await getTeamId(team);
       const labelIds = [await getLabelId(teamId, label)];
       const stateId = await getStateId(teamId, state);
+      const subscriberIds = await getSubscriberIds(subscribers);
 
       const options = {
         teamId,
@@ -43,6 +44,10 @@ async function main() {
         description: body,
         stateId
       };
+
+      // add subscribers to ticket
+      if (subscriberIds && subscriberIds.length > 0)
+        options.subscriberIds = subscriberIds;
 
       await issueCreate(options);
     }
@@ -150,6 +155,34 @@ async function linearWorkflowStatesList(teamId) {
   ).filter((state) => state !== null);
   statesCache[teamId] = teamStates;
   return teamStates;
+}
+
+async function getSubscriberIds(names) {
+  // create an array of user ids for subscribers
+  const userIds = [];
+
+  for (const name of names) {
+    const user = await linearUserFind(name);
+    const id = user && user.id;
+    if (id) userIds.push(id);
+  }
+  return userIds;
+}
+
+async function linearUserFind(userName) {
+  if (!userName) userName = '';
+
+  const { nodes: found } = await linearClient.users({
+      includeArchived: false,
+      first: 100, // limit of 100
+      // filter: {
+      //     displayName: { eq: userName }
+      //   }
+    }
+  );
+  if (found.length === 0) return null;
+
+  return found.find((user) => user.displayName.toLowerCase() === userName.toLowerCase()) || null;
 }
 
 main();

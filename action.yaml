@@ -21,6 +21,10 @@ inputs:
     description: 'ticket state'
     required: false
     default: 'Draft'
+  subscribers:
+    description: 'List of names to subscribe to the ticket'
+    required: false
+    default: ''
 outputs:
   time: # time of output
     description: 'The time we created comment'
