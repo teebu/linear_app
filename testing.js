@@ -12,7 +12,7 @@ let ref_head = process.env.GITHUB_HEAD_REF; // "refs/heads/feature/doc-490-evalu
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
 const title = utils.replacePlaceholders('🥵 QA - cypress.redacted.ai FAILED @ {DATE}'); // core.getInput('title');
 const body = utils.replacePlaceholders('> Cypress test failed: link'); // core.getInput('message');
-const team = 'Front-end Team'; // core.getInput('team');
+const team = 'Docuvision'; // core.getInput('team');
 const label = 'Cypress Fails'; // core.getInput('label');
 const state = 'Draft'; // core.getInput('state');
 const subscribers = utils.splitAndTrim(null); // core.getInput('subscribers');
@@ -127,8 +127,8 @@ async function getTeamId(desiredTeam) {
 }
 
 async function getStateId(teamId, desiredState) {
-  const availabelStatesInTeam = await linearWorkflowStatesList(teamId);
-  const foundState = availabelStatesInTeam.find((state) => state.name === desiredState);
+  const availableStatesInTeam = await linearWorkflowStatesList(teamId);
+  const foundState = availableStatesInTeam.find((state) => state.name === desiredState);
   if (!foundState) {
     throw new Error(`Not found state "${foundState}" in team ${teamId}`);
   }
@@ -141,7 +141,7 @@ async function linearWorkflowStatesList(teamId) {
   if (statesCache && statesCache[teamId] && statesCache[teamId].length > 0) {
     return statesCache[teamId];
   }
-  const { nodes: states } = await linearClient.workflowStates({ first: 100 });
+  const { nodes: states } = await linearClient.workflowStates({ first: 250 });
   const teamStates = (
     await Promise.all(
       states.map(async (state) => {

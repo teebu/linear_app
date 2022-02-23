@@ -127,8 +127,8 @@ async function getTeamId(desiredTeam) {
 }
 
 async function getStateId(teamId, desiredState) {
-  const availabelStatesInTeam = await linearWorkflowStatesList(teamId);
-  const foundState = availabelStatesInTeam.find((state) => state.name === desiredState);
+  const availableStatesInTeam = await linearWorkflowStatesList(teamId);
+  const foundState = availableStatesInTeam.find((state) => state.name === desiredState);
   if (!foundState) {
     throw new Error(`Not found state "${foundState}" in team ${teamId}`);
   }
@@ -141,7 +141,7 @@ async function linearWorkflowStatesList(teamId) {
   if (statesCache && statesCache[teamId] && statesCache[teamId].length > 0) {
     return statesCache[teamId];
   }
-  const { nodes: states } = await linearClient.workflowStates({ first: 100 });
+  const { nodes: states } = await linearClient.workflowStates({ first: 250 });
   const teamStates = (
     await Promise.all(
       states.map(async (state) => {
