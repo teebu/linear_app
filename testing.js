@@ -10,7 +10,7 @@ let stateIds = {};
 
 let ref_head = process.env.GITHUB_HEAD_REF; // "refs/heads/feature/doc-490-evaluate-pull-request-deployment-of"
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
-const title = utils.replacePlaceholders('🥵 QA - cypress.redacted.ai FAILED @ {DATE}'); // core.getInput('title');
+const title = utils.replacePlaceholders('🥵 QA-Bot Tests Failed → Nightly Preview Release Canceled for {DATE}'); // core.getInput('title');
 const body = utils.replacePlaceholders('> Cypress test failed: link'); // core.getInput('message');
 const team = 'Docuvision'; // core.getInput('team');
 const label = 'Cypress Fails'; // core.getInput('label');
