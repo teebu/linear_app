@@ -5,7 +5,7 @@ RegExp.quote = function (str) {
 };
 
 function replacePlaceholders(text) {
-  const now = moment(new Date()).format('MMM Mo YYYY');
+  const now = moment(new Date()).format('MMM Mo YYYY, h:mm:ss a');
 
   const placeHolders = {
     '{DATE}': now,
