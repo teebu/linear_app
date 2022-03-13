@@ -1,6 +1,6 @@
 # Linear App github acton
 
-This action pots a comment in a related linear ticket
+This action posts a comment in a related linear ticket
 
 ## Inputs
 
