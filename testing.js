@@ -12,8 +12,8 @@ let ref_head = process.env.GITHUB_HEAD_REF; // "refs/heads/feature/doc-490-evalu
 // let body = 'Hello I am a robot 🤖 [G](https://google.com)'
 const title = utils.replacePlaceholders('🥵 QA-Bot Tests Failed → Nightly Preview Release Canceled for {DATE}'); // core.getInput('title');
 const body = utils.replacePlaceholders('> Cypress test failed: link'); // core.getInput('message');
-const team = 'Docuvision'; // core.getInput('team');
-const label = 'Cypress Fails'; // core.getInput('label');
+const team = 'Redaction Core'; // core.getInput('team');
+const label = 'PR Review'; // core.getInput('label');
 const state = 'Draft'; // core.getInput('state');
 const subscribers = utils.splitAndTrim(null); // core.getInput('subscribers');
 
@@ -106,7 +106,7 @@ async function issueCreate(options) {
 async function getLabelId(teamId, desiredLabel) {
   // get labels for team
   const team = await linearClient.team(teamId);
-  const { nodes: labels } = await team.labels();
+  const { nodes: labels } = await team.labels({first:200});
   const label = labels.find((label) => label.name.toLowerCase() === desiredLabel.toLowerCase());
   if (!label) {
     throw new Error(`Not found label "${desiredLabel}" in team ${teamId}`);

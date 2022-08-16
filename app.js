@@ -106,7 +106,7 @@ async function issueCreate(options) {
 async function getLabelId(teamId, desiredLabel) {
   // get labels for team
   const team = await linearClient.team(teamId);
-  const { nodes: labels } = await team.labels();
+  const { nodes: labels } = await team.labels({first:200});
   const label = labels.find((label) => label.name.toLowerCase() === desiredLabel.toLowerCase());
   if (!label) {
     throw new Error(`Not found label "${desiredLabel}" in team ${teamId}`);
